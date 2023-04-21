@@ -17,5 +17,6 @@ public class CarDTO {
     private String id;
     @NotNull (message="Mandatory!")
     private String modelName;
-    private double price;
+
+    private Double price;
 }

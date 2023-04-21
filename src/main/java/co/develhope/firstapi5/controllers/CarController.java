@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 
 
 @RestController
@@ -15,12 +16,11 @@ public class CarController {
     @Autowired
     CarDTO carDTO;
     @GetMapping("/getCar")
-    @ResponseBody
-    public CarDTO getNewCar(@RequestParam String id,@RequestParam String modelName, @RequestParam(required = false) double price){
-        return new CarDTO(id,modelName,price);
+    public CarDTO getNewCar(){
+        return new CarDTO();
     }
     @PostMapping("/")
-    public ResponseEntity<String> postCarBodyAndHttp(@RequestBody CarDTO car){
+    public ResponseEntity<String> postCarBodyAndHttp(@Valid @RequestBody CarDTO car){
         System.out.println(car.toString());
         return new ResponseEntity<>("Created",HttpStatus.CREATED);
     }
